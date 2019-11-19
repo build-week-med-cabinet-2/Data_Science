@@ -12,4 +12,4 @@ class Records(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True)
 
     def __repr__(self):
-        return '<id is {}>'.format(self.id)
+        return '<Strain id is {}>'.format(self.id)
