@@ -5,7 +5,7 @@ Build my app factory and do routes and configuration
 from decouple import config
 from flask import Flask, request
 from dotenv import load_dotenv
-from .hello_test import HelloWorld
+from .strain_id_method import Strain_Id
 from .models import DB, Records
 from flask_restful import Api
 load_dotenv()
@@ -21,6 +21,6 @@ def create_app():
 
     api = Api(app)
 
-    api.add_resource(HelloWorld, '/')
+    api.add_resource(Strain_Id, '/')
 
     return app
