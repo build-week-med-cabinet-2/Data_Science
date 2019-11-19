@@ -9,6 +9,12 @@ verify_ssl = true
 flask = "*"
 python-dotenv = "*"
 flask-restful = "*"
+flask-sqlalchemy = "*"
+flask-marshmallow = "*"
+marshmallow-sqlalchemy = "*"
+python-decouple = "*"
+psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
