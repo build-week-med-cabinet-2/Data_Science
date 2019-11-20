@@ -1,1 +1,1 @@
-web: gunicorn TWITOFF:APP
+web: gunicorn CANNABIS_API:APP
