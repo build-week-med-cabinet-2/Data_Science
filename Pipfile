@@ -8,15 +8,13 @@ verify_ssl = true
 [packages]
 flask = "*"
 python-dotenv = "*"
-flask-restful = "*"
 flask-sqlalchemy = "*"
-flask-marshmallow = "*"
-marshmallow-sqlalchemy = "*"
 python-decouple = "*"
 psycopg2 = "*"
 gunicorn = "*"
-numpy = "*"
 pandas = "*"
+sklearn = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.7"

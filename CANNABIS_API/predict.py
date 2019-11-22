@@ -1,24 +1,30 @@
 """
-Prediction on the id
+Prediction on string that returns top 5 matches
 """
 
+from sklearn.externals import joblib
+import pandas as pd
 
-import pickle
-import numpy as np
-from .models import Records
-
-
-def predict_strain(strain_id, cache=None):
+def predict_strain(text):
     """
-    determine and return 3 id for the strains similar to the one provided
+    determine and return 5 id for the strains that fit the description provided
     """
-    id_set = pickle.dumps((strain_id))
-    if cache and cache.exists(id_set):
-        log_reg = pickle.loads(cache.get(id_set))
-    else:
-        modelfile = 'models/final_prediction.pickle'
-        log_reg = pickle.loads(open(modelfile))
-        cache and cache.set(id_set, pickle.dumps(log_reg))
-    return log_reg.predict(id_set)[:3]
+    modelfile = 'CANNABIS_API/models/NN_MJrec.pkl'
+    tfidffile = 'CANNABIS_API/models/tfidf.pkl'
+    nn = joblib.load(modelfile)
+    tfidf = joblib.load(tfidffile)
+
+    # Transform
+    text = pd.Series(text)
+    vect = tfidf.transform(text)
+
+    # Send to df
+    vectdf = pd.DataFrame(vect.todense())
+
+    # Return a list of indexes
+    top5 = nn.kneighbors([vectdf][0], n_neighbors=5)[1][0].tolist()
+    
+    return top5
+
 
 
